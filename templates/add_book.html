@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Book - Book Recommender System</title>
+    <style>
+        body, h1, h2, p {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background-color: #4CAF50;
+            color: white;
+            width: 100%;
+            text-align: center;
+            padding: 10px 0;
+            position: relative;
+        }
+
+        .header h1 {
+            margin: 0;
+        }
+
+        .logout {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+        }
+
+        .logout button {
+            background-color: white;
+            color: #4CAF50;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            font-weight: bold;
+        }
+
+        .logout button:hover {
+            background-color: #e0e0e0;
+            color: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+        }
+
+        .content {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 20px;
+            box-sizing: border-box;
+            width: 100%;
+            max-width: 1200px;
+            margin-top: 20px;
+        }
+
+        .form-container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .form-container h2 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 24px;
+            line-height: 1.2;
+            text-align: center;
+        }
+
+        .form-container form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-container label {
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .form-container input[type="text"],
+        .form-container input[type="number"] {
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .form-container button[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .form-container button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Book Recommender System</h1>
+        <div class="logout">
+            <form action="/logout" method="post">
+                <button type="submit">Logout</button>
+            </form>
+        </div>
+    </div>
+    <div class="content">
+        <div class="form-container">
+            <h2>Add New Book</h2>
+            <form action="/add_book" method="post">
+                <label for="booktitle">Book Title:</label>
+                <input type="text" id="booktitle" name="booktitle" required>
+
+                <label for="author">Author:</label>
+                <input type="text" id="author" name="author" required>
+
+                <label for="image_url">Image URL:</label>
+                <input type="text" id="image_url" name="image_url" required>
+
+                <button type="submit">Add Book</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

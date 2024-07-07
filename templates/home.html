@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        body, h1, h2, p {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background-color: #4CAF50;
+            color: white;
+            width: 100%;
+            text-align: center;
+            padding: 10px 0;
+            position: relative;
+        }
+
+        .header h1 {
+            margin: 0;
+        }
+
+        .logout {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+        }
+
+        .logout button {
+            background-color: white;
+            color: #4CAF50;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            font-weight: bold;
+        }
+
+        .logout button:hover {
+            background-color: #e0e0e0;
+            color: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+        }
+
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 20px;
+            box-sizing: border-box;
+            width: 100%;
+            max-width: 1200px;
+            margin-top: 5px;
+        }
+
+        #textn {
+            margin-top: 20px;
+        }
+
+        #title2 {
+            margin-left: -900px;
+            margin-top: 30px;
+        }
+
+        #c1 {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+            width: 150px;
+            height: 480px;
+            margin: 10px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+        }
+
+        #c1:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+
+        #c1 .card-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-top: 0px;
+            height: calc(100% - 140px);
+        }
+
+        #c1 h2 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 18px;
+            line-height: 1.2;
+        }
+
+        #c1 p {
+            color: #666;
+            margin-bottom: 10px;
+            font-size: 16px;
+            line-height: 1.4;
+        }
+
+        #c1 img {
+            height: 180px;
+            width: auto;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        #c1 a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        #welcome-card, #add-book-card, #browse-books-card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin: 20px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: 300px;
+            margin-top: 40px;
+        }
+
+        #add-book-card:hover, #browse-books-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+
+        #welcome-card h2, #welcome-card p,
+        #add-book-card h3, #add-book-card p,
+        #browse-books-card h3, #browse-books-card p {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 18px;
+            line-height: 1.2;
+        }
+
+        #add-browse-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        #add-book-card a, #browse-books-card a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .highlight {
+            color: #333 !important;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Book Recommender System</h1>
+        <div class="logout">
+            <form action="/logout" method="post">
+                <button type="submit">Logout</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="welcome-card">
+        <h2>Welcome, {{ session['username'] }}</h2>
+        <p>This is your home page.</p>
+    </div>
+
+    <div id="add-browse-container">
+        <div id="add-book-card">
+            <a href="/add_book">
+                <h3>Add A Book</h3>
+                <p>Click here to add a new book</p>
+            </a>
+        </div>
+
+        <div id="browse-books-card">
+            <a href="/browse_books">
+                <h3>Browse Books</h3>
+                <p>Click here to browse available books</p>
+            </a>
+        </div>
+    </div>
+
+    <h1 id="title2">Books For You</h1>
+
+    <div class="content">
+        {% if books|length == 0 %}
+            <h2 id="textn">No books found. Rate some books so we can show you recommendations.</h2>
+        {% else %}
+            {% for book in books %}
+            <div class="card" id="c1">
+                <a href="{{ url_for('book_detail', book_id=book['id']) }}">
+                    <img src="{{ book['image_url'] }}" alt="Book Cover">
+                    <div class="card-content">
+                        <h2>{{ book['booktitle'] }}</h2>
+                        <p>Author: {{ book['author'] }}</p>
+                        <p>Rating: {{ rating[book['id']] }}</p>
+                        <p>Rated By: {{ num_ratings[book['id']] }}</p>
+                        <p>Because you like: </p>
+                        <p class="highlight">{{ from_which[book['id']] }}</p>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+
+</body>
+</html>

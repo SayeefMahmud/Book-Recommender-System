@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browse Books</title>
+    <style>
+        body, h1, h2, p {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background-color: #4CAF50;
+            color: white;
+            width: 100%;
+            text-align: center;
+            padding: 10px 0;
+            position: relative;
+        }
+
+        .header h1 {
+            margin: 0;
+        }
+
+        .logout {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+        }
+
+        .logout button {
+            background-color: white;
+            color: #4CAF50;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            font-weight: bold;
+        }
+
+        .logout button:hover {
+            background-color: #e0e0e0;
+            color: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+        }
+
+        .search-form {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .search-form input[type="text"] {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 8px 0 0 8px;
+            width: 300px;
+            box-sizing: border-box;
+            outline: none;
+        }
+
+        .search-form button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 0 8px 8px 0;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            outline: none;
+        }
+
+        .search-form button:hover {
+            background-color: #45a049;
+        }
+
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 20px;
+            box-sizing: border-box;
+            width: 100%;
+            max-width: 1200px;
+            margin-top: -10px;
+        }
+
+        .card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+            width: 150px;
+            height: 400px;
+            margin: 10px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+
+        .card-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-top: 0px;
+            height: calc(100% - 140px);
+        }
+
+        .card h2 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 18px;
+            line-height: 1.2;
+        }
+
+        .card p {
+            color: #666;
+            margin-bottom: 10px;
+            font-size: 16px;
+            line-height: 1.4;
+        }
+
+        .card img {
+            height: 180px;
+            width: auto;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .card a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .search-results-header {
+            margin: 20px 0;
+            color: #333;
+            font-size: 28px;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .highlight {
+            color: #4CAF50;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Book Recommender System</h1>
+        <div class="logout">
+            <form action="/logout" method="post">
+                <button type="submit">Logout</button>
+            </form>
+        </div>
+    </div>
+
+    <h1 class="search-results-header">Search results for: <span class="highlight">{{ s }}</span></h1>
+    <div class="content">
+        {% for book in books %}
+        <div class="card">
+            <a href="{{ url_for('book_detail', book_id=book['id']) }}">
+                <img src="{{ book['image_url'] }}" alt="Book Cover">
+                <div class="card-content">
+                    <h2>{{ book['booktitle'] }}</h2>
+                    <p> Author: {{ book['author'] }}</p>
+                    <p>Rating: {{ rating[book['id']] }}</p>
+                    <p>Rated By: {{ num_ratings[book['id']] }}</p>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
