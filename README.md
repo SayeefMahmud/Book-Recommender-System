@@ -11,7 +11,7 @@ Welcome to the Book Recommender System! This project is a web application design
   - **Log In**: Returning users can log in to access their personalized features.
 
 - **Book Management**:
-  - **Add Books**: Users can add new books to the database.
+  - **Add Books**: Users can add new books to the website.
   - **Browse Books**: Users can browse through the collection of books available on the platform.
 
 - **Book Ratings and Recommendations**:
@@ -19,7 +19,7 @@ Welcome to the Book Recommender System! This project is a web application design
   - **Personalized Recommendations**: Based on their ratings, users get personalized book recommendations.
 
 - **External Links**:
-  - **Search for Books**: Each book has a link that redirects to an Amazon.com search page with the name of the book.
+  - **Buy Books**: Each book has a link that redirects to Amazon.com where users can buy the book.
 
 
 ## Setup Instructions
