@@ -24,9 +24,11 @@ Welcome to the Book Recommender System! This project is a web application design
 
 ## Setup Instructions
 
-1. Install the dependencies - Numpy, Pandas, Flask, XAMPP.
-2. Clone this project.
-3. Start the servers in XAMPP. Navigate to http://localhost/phpmyadmin/ . Create a new database for the Book Recommender System. Use the provided SQL file to set up the database schema. The SQL file is located in the `database` directory of the repository. Insert sample data to test the application.
-4. Update the `config.py` file with the appropriate database name.
-5. Run the `app.py` Python file by ```python app.py```. The Book Recommender website will now be accessible at  http://127.0.0.1:4558 .
-6. Sign Up or Log in to browse books.
+1. Install the dependencies:
+   - Install Numpy, Pandas, and Flask by running the command `pip install numpy pandas flask`
+   - Install XAMPP from https://www.apachefriends.org/
+3. Clone this project.
+4. Start the servers in XAMPP. Navigate to http://localhost/phpmyadmin/ . Create a new database for the Book Recommender System. Use the provided SQL file to set up the database schema. The SQL file is located in the `database` directory of the repository. Insert sample data to test the application.
+5. Update the `config.py` file with the appropriate database name.
+6. Run the `app.py` Python file by ```python app.py```. The Book Recommender website will now be accessible at  http://127.0.0.1:4558 .
+7. Sign Up or Log in to browse books.
